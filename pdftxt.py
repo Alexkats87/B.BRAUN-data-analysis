@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+# This script allows to convert several PDF-files into one TXT-file
+# Uses PDFMiner library
+
 import os
 
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
@@ -61,7 +64,8 @@ def read_folder(folder, txt_file):
 
 # __________________________________________________________________________________
 
-
+# This function call will join all PDF-files at 'C:\Python27\Acts_test' folder
+# and convert them to one TXT-file 'first_test.txt'
 read_folder('C:\Python27\Acts_test', 'first_test.txt')                   
 
 
