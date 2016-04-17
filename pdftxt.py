@@ -55,7 +55,6 @@ def read_folder(folder, txt_file):
         for f in files:
             path = os.path.join(d,f) 
             path_f.append(path) 
-    i=1
     for f in path_f:
         print f
         convert_pdf_to_txt(f, txt_file)
