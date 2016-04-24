@@ -39,9 +39,8 @@ def convert_pdf_to_txt(path , txt_file):
     fp.close()
     device.close()
     retstr.close()
-    f=open(txt_file,'a')
-    f.write(text)
-    f.close()
+    with open(newfile, 'a') as f:
+        f.write(text)
     return text
 
 
