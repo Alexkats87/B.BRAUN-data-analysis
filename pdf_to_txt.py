@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# This script allows to convert several PDF-files into one TXT-file
+# This script allows to convert several PDF-files from 
+# specified directory into one TXT-file.
 # Uses PDFMiner library
 
 import os
