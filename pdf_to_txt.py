@@ -65,7 +65,8 @@ def read_folder(folder, txt_file):
 
 # This function call will join all PDF-files at 'C:\Python27\Acts_test' folder
 # and convert them to one TXT-file 'first_test.txt'
-read_folder('C:\Python27\Acts_test', 'first_test.txt')                   
+if __name__ == "__main__":
+    read_folder('C:\Python27\Acts_test', 'first_test.txt')                   
 
 
 
