@@ -1,0 +1,178 @@
+#type(Key.ENTER) - OK
+#openApp("c:\\Program Files\\WindowsApps\\notepad.exe") 
+#openApp("notepad.exe")
+
+wait(2)
+
+# Here open SAP , VA22 
+
+
+new_ce_file = open('C:\\MY\\Analizer\\test_new_ce.txt')        # source of new CE
+n=0
+while n<2600: # while not exists (SAP disconnect ERR) OR ()
+    
+    old_ce_file = open('C:\\MY\\Analizer\\test_old_ce.txt','a+')  # processed CE
+    err_ce_file = open('C:\\MY\\Analizer\\test_err_ce.txt','a+')  # CE not processed
+    
+    CE = new_ce_file.readline()
+    CE_2 = "1_"+CE 
+    # add SAP focus
+    for i in range(1,12):
+        type(Key.BACKSPACE)
+        type(Key.DELETE)
+        
+    wait(1)
+    if CE[0]=='2':
+        type(CE[0:9])                           # type CE number in VA22
+    elif CE[0]=='7':
+        type(CE[0:8])
+    else: 
+        break
+    wait(1) 
+    
+    
+    #===================================================================================
+
+    
+    type(Key.ALT)    #click("1451300681918.png")   #фактура -> вывести  OR (hot_key_combination)
+    wait(1)
+    for i in range(1,7):
+        wait(0.2)
+        type(Key.DOWN)
+    wait(1)
+    type(Key.ENTER)   # out CE !
+    
+      
+    if exists("1451302210821.png") :                        # if CE удален или используется
+        err_ce_file.write(CE)
+        err_ce_file.close()
+        wait(1)
+        continue                             # next CE!
+    
+    wait(1)
+    wait("1451308083431.png",180)
+    wait(2)
+    click("options_print.png")
+    wait(2)
+    if exists("ru20.png"):
+        click("ru20_region.png")
+        wait(0.2)
+        type(Key.BACKSPACE)
+        type(Key.BACKSPACE)
+        type(Key.BACKSPACE)
+        type(Key.BACKSPACE)   
+        wait(0.2)
+        type("LOCL")
+    click("vypolnit.png") 
+    wait(2)
+    click("1451308113646.png")
+    wait(2)
+    wait("1451314485107.png",180)
+    click("1451308180226.png")
+    wait(2)
+    if exists("1451308499377.png"):
+        click("1451308499377.png")
+    wait(1)
+    if exists("1451308252629.png"):
+        click("1451308271501.png")
+    wait("1451309123058.png", 60)
+    if not exists("1451309123058.png"):
+        if exists("1451309137054.png"):
+            click("1451309137054.png")
+        elif exists("1451309840192.png"):
+            click("1451309840192.png")
+    
+    wait("1451309123058.png",60)
+        
+    wait(1)
+    wait("1451308760562.png")
+    click("1451309161825.png")
+    wait(2)
+    type(Key.DELETE)    
+    wait(1)
+    type(CE)
+    if exists("1451317947256.png"):
+        click("1451317961740.png")
+        
+   
+    #type(Key.ENTER)
+    wait(1)
+    wait("1451308980565.png",60)
+    wait(1)
+    click("1451309015436.png")
+    wait(1)
+    #---------------------------------------   END of printing 1 PDF
+
+
+
+    if not exists("1451309123058.png"):
+        if exists("1451309137054.png"):
+            click("1451309137054.png")
+        elif exists("1451309840192.png"):
+            click("1451309840192.png")
+    
+    wait(2)
+    
+    wait("1451309123058.png")
+        
+    wait(1)
+    click("1451309161825.png")
+    wait(1)
+    type(Key.DELETE)
+    wait(0.2)
+    type(CE_2)
+    wait(1)
+    #type(Key.ENTER)
+    wait(1)
+ 
+    wait("1451308980565.png",60)
+    wait(1)
+    click("1451309015436.png")
+    
+   
+    wait(3)
+    
+    
+    
+    
+    
+    for i in range(1,12):
+        #wait(1)
+        type(Key.DELETE)
+    wait(2)
+   
+    
+    # wait(SAP Print CE window)
+    # click(print.png)
+    # wait (PDF-creator ERROR,  5 sek) 
+    # if (PDF-creator ERROR)
+        # click(close pdf-error message)
+    # wait () ждем окно креэйтора : секунды или картинку
+    
+    # click OK x 2 : закрываем диалоговые окна принтера 
+    # wait(3) 
+    
+    # выбираем папку для сохранения 1-го файла
+    #type(CE)
+    # OK - сохранение
+    # выбираем папку для сохранения 2-го файла
+    #type(CE_2)
+    # OK - сохранение
+    # закрыть окна PDF !
+    
+    # App.focus("sap") #фокус на окно САП
+   
+    old_ce_file.write(CE)
+   
+    n = n+1
+      
+    old_ce_file.close()
+    err_ce_file.close()
+    wait(5)
+    
+new_ce_file.close()
+
+
+
+
+    
